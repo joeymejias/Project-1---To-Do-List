@@ -16,10 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.joeymejias.listr.db.TaskContract;
 import com.example.joeymejias.listr.db.TaskDbHelper;
@@ -29,31 +32,34 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private TaskDbHelper mHelper;
+    public static String task;
+
+    //    private TaskDbHelper mHelper;
     private GridView mTaskListView;
     private ArrayAdapter<String> mAdapter;
+    public static String detail;
+    private String taskTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mHelper = new TaskDbHelper(this);
+        TaskDbHelper.mHelper = new TaskDbHelper(this);
         mTaskListView = (GridView) findViewById(R.id.list_todo);
 
-        SQLiteDatabase db = mHelper.getReadableDatabase();
-        final Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
+        SQLiteDatabase db = TaskDbHelper.mHelper.getReadableDatabase();
+        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DETAIL},
                 null, null, null, null, null);
+        cursor.moveToFirst();
         while(cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
             Log.d(TAG, "Task: " + cursor.getString(idx));
             int idx2 = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_DETAIL);
             Log.d(TAG, "Detail: " + cursor.getString(idx2));
+//
         }
-        cursor.close();
-        db.close();
-        updateUI();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +73,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this,TaskDetail.class);
-                intent.putExtra("Task Details", TaskContract.TaskEntry.COL_TASK_DETAIL);
+                intent.putExtra("Task Details", getDetail(position)); //Want to query db for the details of the task selected
                 startActivity(intent);
             }
         });
+
+        mTaskListView.setLongClickable(true);
+        mTaskListView.setClickable(true);
+        mTaskListView.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                Toast.makeText(MainActivity.this, "You long clicked!", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        cursor.close();
+        db.close();
+        updateUI();
     }
 
     @Override
@@ -81,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
-//
+//          //Code for when task(s) long clicked to deleteTask()
 //    }
 
     public void createTask() {
@@ -95,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 layout.addView(taskEditText);
 
                 final EditText detailEditText = new EditText(this);
-                detailEditText.setHint("Description");
+                detailEditText.setHint("Description (Tip: use enter for lists)");
                 layout.addView(detailEditText);
 
                 AlertDialog dialog = new AlertDialog.Builder(this)
                         .setTitle("Add a new task")
-//                        .setMessage("What do you want to do next?")
+//                       .setMessage("What do you want to do next?")
 //                        .setView(taskEditText)
 //                        .setTitle("Add task detail")
 //                        .setMessage("How do you want to do it?")
@@ -111,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 String task = String.valueOf(taskEditText.getText());
                                 String detail = String.valueOf(detailEditText.getText());
-                                SQLiteDatabase db = mHelper.getWritableDatabase();
+                                SQLiteDatabase db = TaskDbHelper.mHelper.getWritableDatabase();
                                 ContentValues values = new ContentValues();
                                 values.put(TaskContract.TaskEntry.COL_TASK_TITLE, task);
                                 values.put(TaskContract.TaskEntry.COL_TASK_DETAIL, detail);
@@ -128,27 +147,53 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
     }
 
-    public void deleteTask(View view) {
-        View parent = (View) view.getParent();
-        TextView taskTextView = (TextView) parent.findViewById(R.id.task_title);
-        String task = String.valueOf(taskTextView.getText());
-        SQLiteDatabase db = mHelper.getWritableDatabase();
-        db.delete(TaskContract.TaskEntry.TABLE,
-                TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
-                new String[]{task});
-        db.close();
-        updateUI();
+    public void createTask(MenuItem item) {
+        createTask();
     }
 
-    private void updateUI() {
+//    public String getTaskDetail(){
+//        return TaskContract.TaskEntry.COL_TASK_DETAIL; //Query DB and return detail of task
+//    }
+
+    public static String getDetail(int position){
+        SQLiteDatabase db = TaskDbHelper.mHelper.getReadableDatabase();
+        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
+                new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DETAIL},
+                null, null, null, null, null);
+        cursor.moveToPosition(position);
+        detail = cursor.getString(cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_DETAIL));
+        task = cursor.getString(cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE));
+        cursor.close();
+        db.close();
+        return detail;
+    }
+
+//    public void deleteTask(View view) {
+////        View parent = (View) view.getParent();
+////        TextView taskTextView = (TextView) parent.findViewById(R.id.task_title);
+////        String task = String.valueOf(taskTextView.getText());
+//        String task = taskTitle;
+//        SQLiteDatabase db = TaskDbHelper.mHelper.getWritableDatabase();
+//        db.delete(TaskContract.TaskEntry.TABLE,
+//                TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
+//                new String[]{task});
+//        db.close();
+//        updateUI();
+//    }
+
+    public void updateUI() {
         ArrayList<String> taskList = new ArrayList<>();
-        SQLiteDatabase db = mHelper.getReadableDatabase();
+        SQLiteDatabase db = TaskDbHelper.mHelper.getReadableDatabase();
         Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DETAIL},
                 null, null, null, null, null);
         while (cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
-            taskList.add(cursor.getString(idx));
+            int idx2 = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_DETAIL);
+            taskTitle = cursor.getString(idx);
+            String taskDetail = cursor.getString(idx2);
+            String taskCard = (taskTitle + "\n" + taskDetail);
+            taskList.add(taskCard);
         }
 
         if (mAdapter == null) {

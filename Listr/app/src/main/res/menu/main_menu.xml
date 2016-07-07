@@ -4,5 +4,6 @@
       xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/action_add_task"
-        android:title="Add Task"/>
+        android:title="Add Task"
+        android:onClick="createTask"/>
 </menu>
