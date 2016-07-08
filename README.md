@@ -74,8 +74,9 @@ Marking a task as DONE returns to the To-do List task page. Have fun exploring L
 #### Furture Updates
 
 - Refactor codebase
-- System back button updates database
+- Implement RecyclerView Grid
+- Implement system back button updates database
 - Database helper class as singleton
 - Syncing data using Firebase
-- New Task options (i.e. lists with checkboxes, voice notes, photos)
+- New Task options (i.e. lists with checkboxes, voice notes, photo notes)
 - Design update
