@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                //Set error checking for edit texts
                                 String task = String.valueOf(taskEditText.getText());
                                 String detail = String.valueOf(detailEditText.getText());
                                 SQLiteDatabase db = TaskDbHelper.mHelper.getWritableDatabase();
