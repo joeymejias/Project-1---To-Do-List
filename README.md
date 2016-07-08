@@ -74,6 +74,7 @@ Marking a task as DONE returns to the To-do List task page. Have fun exploring L
 #### Furture Updates
 
 - Refactor codebase
+- Implement error checking
 - Implement RecyclerView Grid
 - Implement system back button updates database
 - Database helper class as singleton
