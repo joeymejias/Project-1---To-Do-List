@@ -73,6 +73,7 @@ Marking a task as DONE returns to the To-do List task page. Have fun exploring L
 
 #### Furture Updates
 
+- Refactor codebase
 - System back button updates database
 - Database helper class as singleton
 - Syncing data using Firebase
