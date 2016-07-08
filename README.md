@@ -2,41 +2,28 @@
 
 #### Overview
 
-It's time to create your very first Android app - a to-do list app - that runs on a real Android device!
+Welcome to the Listr ReadMe!
 
-This might seem intimidating at first, but you have the ability to break down what you see on the screen into easily identifiable parts. Learning to both design an app and implement your designs are crucial skills to being a successful Android developer.
+This is what we'll be going over:
+- What is Listr? (What can Listr do for me?)
+- How to use Listr
+- Known Bugs
+- Future Updates
 
-**You will be working individually for this project**. Think through your design carefully before you implement it in Android Studio. Test both the layout and functionality of each screen as you create them. Don't wait until the end!
-
----
-
-#### Requirements
-
-Your app must:
-
-- **View a collection of to-do lists**
-- **View items on a to-do list, including descriptions**
-- Allow the user to **create a new to-do list**
-- **Add items** to each to-do list
-- Allow the user to **remove items from a to-do list**
-- Allow the user to **remove an entire to-do list**
-- Use two custom Java objects to contain your data for the **To Do Lists**, and the **To Do Items** in each **ToDoList**
-- Show an error message if invalid input is given
-- Persist data (your to-do-lists) while the app is open using a **singleton**
-
-**Bonus:**
-
-- Allow the user to check off completed items
-- Allow the user to edit previously added items
-- Persist data when the app closes and is re-opened
+An interactive demo of Listr is available at:
+https://popapp.in/projects/577fc861b9071da51c4e8154/preview
 
 ---
 
-#### Code of Conduct
+#### What is Listr?
 
-As always, your app must adhere to General Assembly's [student code of conduct guidelines](../../../resources/guidelines/code-of-conduct.md).
+Listr is a To-do List app that helps you keep track of all the things.
 
-If you have questions about whether or not your work adheres to these guidelines, please speak with a member of your instructional team.
+---
+
+#### How to use Listr
+
+It all starts on the To-do List Task List screen.
 
 ---
 
