@@ -24,8 +24,6 @@ Listr is a To-do List app that helps you keep track of all the things.
 
 #### How to use Listr
 
-<p align="center">
-
 It all starts on the To-do List Task List screen.
 
   <img src="screenshots/screenshot1.png" width="250">
@@ -61,9 +59,6 @@ Selecing GO BACK returns to the To-do List task page displaying the cards availa
 Marking a task as DONE returns to the To-do List task page. Have fun exploring Listr!
 
   <img src="screenshots/screenshot1.png" width="250">
-
-
-</p>
 ---
 
 #### Necessary Deliverables
