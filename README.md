@@ -10,7 +10,7 @@ This is what we'll be going over:
 - Known Bugs
 - Future Updates
 
-An interactive demo of Listr is available at:
+An interactive demo of the Listr prototype is available at:
 
 https://popapp.in/projects/577fc861b9071da51c4e8154/preview
 
@@ -23,6 +23,10 @@ Listr is a To-do List app that helps you keep track of all the things.
 ---
 
 #### How to use Listr
+
+An interactive demo of the Listr prototype is available at:
+
+https://popapp.in/projects/577fc861b9071da51c4e8154/preview
 
 It all starts on the To-do List Task List screen.
 
@@ -61,56 +65,16 @@ Marking a task as DONE returns to the To-do List task page. Have fun exploring L
   <img src="screenshots/screenshot1.png" width="250">
 ---
 
-#### Necessary Deliverables
+#### Known Bugs
 
-- A **git repository hosted on GitHub**, with frequent commits dating back to the **very beginning** of the project. Commit early, commit often.
-- **A ``readme.md`` file** describing what the app does, and any bugs that may exist.
-- Pictures of your prototypes in the git repository
-- At least one screenshot of your home screen in the `readme.md`
+- Using System back button does not update database... Yet!
 
 ---
 
-#### Suggested Ways to Get Started
+#### Furture Updates
 
-- Complete as much of the layout XML as possible before starting to write your logic
-- Use the Android API documentation - it is very thorough and provides useful code samples
-- Don’t hesitate to write throwaway code to solve short term problems
-- Write pseudocode before you write actual code (remember to think through the logic first!)
-
----
-
-### Useful Resources
-
-- [Android API Reference](http://developer.android.com/reference/packages.html)
-- [Android API Guides](http://developer.android.com/guide/index.html)
-
----
-
-#### Example Deliverable
-
-Below you can find an example of what the instructors' final product looks like. **Be creative with your own designs!**
-
-<p align="center">
-  <img src="screenshots/screenshot1.png" width="250">
-  <img src="screenshots/screenshot2.png" width="250">
-  <img src="screenshots/screenshot3.png" width="250">
-  <img src="screenshots/screenshot4.png" width="250">
-  <img src="screenshots/screenshot5.png" width="250">
-  <img src="screenshots/screenshot6.png" width="250">
-  <img src="screenshots/screenshot7.png" width="250">
-
-</p>
-
-#### Project Feedback + Evaluation
-
-
-Base on the requirements you can earn a maximum of 18 points on this project. Your instructors will score each of your technical requirements using the scale below:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+- System back button updates database
+- Database helper class as singleton
+- Syncing data using Firebase
+- New Task options (i.e. lists with checkboxes, voice notes, photos)
+- Design update
