@@ -89,3 +89,9 @@ Base on the requirements you can earn a maximum of 18 points on this project. Yo
     **3** | _Exceeds expectations, you wonderful creature, you!_
 
  This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+
+---
+
+## Licensing
+1. All content is licensed under a CC-BY-NC-SA 4.0 license. 
+2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
