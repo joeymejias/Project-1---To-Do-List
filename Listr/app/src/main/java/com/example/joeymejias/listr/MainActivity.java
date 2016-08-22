@@ -50,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteDatabase db = TaskDbHelper.mHelper.getReadableDatabase();
         Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
-                new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DETAIL},
-                null, null, null, null, null);
+                new String[]{TaskContract.TaskEntry._ID,
+                        TaskContract.TaskEntry.COL_TASK_TITLE,
+                        TaskContract.TaskEntry.COL_TASK_DETAIL},
+                        null, null, null, null, null);
         cursor.moveToFirst();
         while(cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);

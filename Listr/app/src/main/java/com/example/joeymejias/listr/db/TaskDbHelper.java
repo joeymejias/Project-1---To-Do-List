@@ -36,7 +36,11 @@ public class TaskDbHelper extends SQLiteOpenHelper {
 
     public static void updateDetail(){
         SQLiteDatabase db = TaskDbHelper.mHelper.getWritableDatabase();
-        String command = ("UPDATE " + TaskContract.TaskEntry.TABLE + " SET " + TaskContract.TaskEntry.COL_TASK_DETAIL + " = \"" +  TaskDetail.detail + "\" WHERE " + TaskContract.TaskEntry.COL_TASK_DETAIL + " = \"" + TaskDetail.oldText + "\"");
+        String command = ("UPDATE " + TaskContract.TaskEntry.TABLE +
+                " SET " + TaskContract.TaskEntry.COL_TASK_DETAIL +
+                " = \"" +  TaskDetail.detail +
+                "\" WHERE " + TaskContract.TaskEntry.COL_TASK_DETAIL +
+                " = \"" + TaskDetail.oldText + "\"");
         db.execSQL(command);
     }
 

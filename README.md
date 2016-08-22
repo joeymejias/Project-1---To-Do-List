@@ -21,7 +21,13 @@ Listr is a To-do List app that helps you keep track of all the things.
 
 ---
 
+<<<<<<< HEAD
 #### How to use Listr
+=======
+#### Code of Conduct
+
+As always, your app must adhere to General Assembly's [student code of conduct guidelines](https://github.com/ga-adi-nyc/Course-Materials/blob/master/markdown/code-of-conduct.md).
+>>>>>>> upstream/master
 
 It all starts on the To-do List Task List screen.
 
@@ -76,3 +82,9 @@ Base on the requirements you can earn a maximum of 18 points on this project. Yo
     **3** | _Exceeds expectations, you wonderful creature, you!_
 
  This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+
+---
+
+## Licensing
+1. All content is licensed under a CC-BY-NC-SA 4.0 license. 
+2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
