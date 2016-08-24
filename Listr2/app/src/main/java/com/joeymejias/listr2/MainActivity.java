@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +36,35 @@ public class MainActivity extends AppCompatActivity {
                 showInputDialog(); //show dialog box for the title of the todo list
             }
         });
+
+        mMySingleton = MySingleton.getInstance();
+
+        mCustomAdapter = new CustomAdapter(this,mMySingleton.getToDoLists());
+
+        ListView listView = (ListView)findViewById(R.id.to_do_list_view);
+        TextView emptyTextView = (TextView)findViewById(R.id.empty_list_text_view);
+        listView.setAdapter(mCustomAdapter);
+        listView.setEmptyView(emptyTextView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int position, long id) {
+                Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
+                intent.putExtra("index", position);
+                startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mMySingleton.getToDoLists().remove(position);
+                mCustomAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
     }
 
     //method for showing the dialog box
@@ -42,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.list_text_dialog, null); //inflate view for text dialog
         dialogBuilder.setView(dialogView);
 
-        final EditText editText = (EditText) dialogView.findViewById(R.id.list_title);
+        final EditText editText = (EditText) dialogView.findViewById(R.id.list_text);
 
         dialogBuilder.setTitle("List Title"); //title of dialog box
         dialogBuilder.setMessage("Enter title below"); //prompt of dialog box
